@@ -48,8 +48,8 @@ import CustomLoading from "@/components/utilities/CustomLoading.vue";
 const props = defineProps({
     readmePath: {
         type: String,
-        // required: true,
-        default: 'https://raw.githubusercontent.com/dangkhoa2004/dangkh0a-portfolio/refs/heads/main/README.md?token=GHSAT0AAAAAADDHXKIRVQQNWPPNZ3SBDFUG2BE6BZA'
+        required: true,
+        default: './README.md'
     },
     cardTitle: {
         type: String,
