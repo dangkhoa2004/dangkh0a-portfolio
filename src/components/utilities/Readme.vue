@@ -28,11 +28,7 @@
                     </div>
 
                     <div class="flex-grow p-6 overflow-y-auto markdown-body">
-                        <CustomLoading v-if="loading" />
-                        <div v-else-if="error" class="text-center text-red-500">
-                            {{ error }}
-                        </div>
-                        <div v-else v-html="renderedReadme"></div>
+                        <div v-html="renderedReadme"></div>
                     </div>
                 </div>
             </div>
@@ -43,14 +39,8 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import MarkdownIt from 'markdown-it';
-import CustomLoading from "@/components/utilities/CustomLoading.vue";
 
 const props = defineProps({
-    readmePath: {
-        type: String,
-        required: true,
-        default: 'https://github.com/dangkhoa2004/dangkh0a-portfolio/blob/main/README.md'
-    },
     cardTitle: {
         type: String,
         default: 'View Project README'
@@ -63,8 +53,138 @@ const props = defineProps({
 
 const open = ref(false);
 const renderedReadme = ref('');
-const loading = ref(false);
-const error = ref(null);
+
+const rawMarkdownContent = `
+# 🚀 Personal Portfolio - Cao Đăng Khoa
+
+Welcome to the source code of Cao Đăng Khoa's personal portfolio website! This space is where I share my journey, skills, and the projects I've undertaken on my path to becoming a **Fullstack Developer**.
+
+## ✨ Introduction
+
+This website is built with the primary purpose of:
+
+- 📚 **Sharing the Journey:** Introducing my educational background, experience, and what has shaped me into the Fullstack Developer I am today.
+- 📦 **Showcasing Projects:** Displaying key completed projects, accompanied by detailed descriptions and the list of technologies used.
+- 🛠️ **Listing Skills:** Summarizing my professional skills, practical work experience, and notable achievements.
+- ✍️ **Connecting Knowledge:** Sharing technical articles or personal blog posts (if any).
+- 🎯 **Defining Goals:** Clearly presenting my development direction and future career objectives.
+- 🤝 **Expanding Connections:** Providing contact information so people can easily connect.
+
+## 🔑 Key Features
+
+Explore the main sections on the portfolio site:
+
+- 👤 **About Me:** The story about myself and my development journey.
+- 📂 **Projects:** The products I've created, demonstrating capabilities through practice.
+- 💡 **Technical Skills:** The technologies and tools I am proficient with.
+- 💼 **Experience:** Valuable experiences in building applications.
+- 🏆 **Certificates & Awards:** Recognition for efforts and achievements.
+- 📝 **Blog/Technical Articles:** A place to share knowledge and personal perspectives (if any).
+- 📈 **Career Goals:** The path I am heading towards in the future.
+- 📬 **Contact:** Information for you to easily connect with me.
+
+## 💻 Technologies Used
+
+This portfolio project is built upon the foundation of modern technologies:
+
+- ⚛️ **Frontend:**
+    - Vue.js (JavaScript Framework)
+    - React (JavaScript Library)
+    - HTML5, CSS3, Javascript, Typescript
+    - Bootstrap (CSS Framework)
+    - Vite (Build Tool)
+- ☕ **Backend:**
+    - Java (Spring Boot Framework)
+    - PHP
+    - Python
+- 🗄️ **Database:**
+    - Database (Popular Database Management Systems)
+- ⚙️ **Tools & Others:**
+    - Git / Github (Version Control System)
+    - Rest API (API Design Architecture)
+    - Postman (API Testing Tool)
+
+*Note: This list summarizes the main technologies used in the portfolio project and may include other technologies mentioned in the projects or skills sections.*
+
+## 📁 Project Structure
+
+Below is an overview of the project's directory structure:
+
+\`\`\`
+├── public/        \# Static files (favicon, index.html,...)
+├── src/           \# Main source code for the Vue application
+│  ├── assets/      \# Static resources (images, fonts, global styles,...)
+│  ├── components/  \# Reusable Vue components
+│  ├── router/      \# Routing configuration (Vue Router)
+│  ├── screens/     \# Main application pages (views)
+│  └── stores/      \# Global state management (using Pinia or Vuex)
+├── index.html     \# Entry HTML file
+├── LICENSE        \# License for the source code
+├── package.json   \# Project information and dependencies list
+├── package-lock.json \# Exact version lock for dependencies
+├── README.md      \# README file describing the project
+├── vite.config.js \# Configuration for Vite build tool
+└── jsconfig.json  \# Configuration for JavaScript (for editor/IDE)
+\`\`\`
+
+## 🛠️ Quick Start
+
+To set up and run this project on your local machine, please follow these steps:
+
+1. **Clone repository:** Copy the source code to your machine.
+   \`\`\`bash
+   git clone <your_repository_url>
+   \`\`\`
+2. **Navigate into the project directory:**
+   \`\`\`bash
+   cd <your_project_folder_name>
+   \`\`\`
+3. **Install dependencies:** Use your preferred package manager.
+   \`\`\`bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   \`\`\`
+4. **Run the project in development mode:**
+
+   \`\`\`bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   \`\`\`
+
+   The application will start and be accessible at \`http://localhost:<port>\` (usually 5173 or 3000).
+
+5. **Build the project for deployment:**
+   \`\`\`bash
+   npm run build
+   # or
+   yarn build
+   # or
+   pnpm build
+   \`\`\`
+   The production-optimized build result will be in the \`dist/\` directory.
+
+## 📬 Contact
+
+If you have any questions, want to discuss collaboration opportunities, or simply want to connect, feel free to reach out to me via:
+
+- 📧 Email: [Your Email Address]
+- 🔗 LinkedIn: [Your LinkedIn Profile Link]
+- 🌐 Website: [Link to your deployed website (if any)]
+- 🐙 GitHub: [Link to your GitHub Profile]
+
+*Please replace the \`[...]\` placeholders with your actual contact information.*
+
+## ⚖️ License
+
+This project is released under the **[License Name, e.g., MIT License]**. Full details can be found in the [LICENSE](LICENSE) file.
+
+`;
 
 const md = new MarkdownIt({
     html: true,
@@ -72,50 +192,10 @@ const md = new MarkdownIt({
     typographer: true,
 });
 
-const fetchReadme = async () => {
-    loading.value = true;
-    error.value = null;
-
-    // Tạo một Promise cho việc fetch dữ liệu
-    const fetchPromise = fetch(props.readmePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to fetch README. Status: ${response.status} ${response.statusText}`);
-            }
-            return response.text();
-        })
-        .then(readmeText => {
-            // Trả về nội dung đã render, sẽ được Promise.all sử dụng
-            return md.render(readmeText);
-        });
-
-    // Tạo một Promise chờ 1 giây
-    const delayPromise = new Promise(resolve => setTimeout(resolve, 1000)); // Chờ 1000ms = 1 giây
-
-    try {
-        // Sử dụng Promise.all để chờ cả fetch Promise và delay Promise hoàn thành
-        const [renderedContent] = await Promise.all([fetchPromise, delayPromise]);
-
-        // Nếu cả hai đều hoàn thành, cập nhật nội dung
-        renderedReadme.value = renderedContent;
-
-    } catch (e) {
-        // Bắt lỗi nếu fetch thất bại (delay Promise không thất bại)
-        console.error('Error fetching or rendering README:', e);
-        error.value = 'Failed to load README. Please check the file path and server configuration.';
-        renderedReadme.value = '';
-    } finally {
-        // Dù thành công hay thất bại (sau khi chờ 1 giây), kết thúc trạng thái loading
-        loading.value = false;
-    }
-};
+renderedReadme.value = md.render(rawMarkdownContent);
 
 const handleOpen = () => {
     open.value = true;
-    // Chỉ fetch lần đầu mở modal
-    if (!renderedReadme.value && !loading.value && !error.value) {
-        fetchReadme();
-    }
 };
 
 const handleClose = () => {
@@ -212,5 +292,47 @@ onBeforeUnmount(() => {
 
 .dark-mode .readme-modal-content button svg {
     color: var(--color-text);
+}
+
+.markdown-body code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.markdown-body pre {
+    padding: 16px;
+    overflow: auto;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    margin-bottom: 1em;
+}
+
+.markdown-body pre code {
+    display: inline-block;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 100% !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    color: #333;
+}
+
+.dark-mode .markdown-body code {
+    background-color: rgba(110, 118, 129, 0.4);
+    color: #c9d1d9;
+}
+
+.dark-mode .markdown-body pre {
+    background-color: #161b22;
+}
+
+.dark-mode .markdown-body pre code {
+    color: #c9d1d9;
 }
 </style>
