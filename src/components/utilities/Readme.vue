@@ -55,13 +55,13 @@ const open = ref(false);
 const renderedReadme = ref('');
 
 const rawMarkdownContent = `
-# 🚀 Personal Portfolio - Cao Đăng Khoa
+# 🚀 Personal Portfolio - Cao Dang Khoa
 
-Welcome to the source code of Cao Đăng Khoa's personal portfolio website! This space is where I share my journey, skills, and the projects I've undertaken on my path to becoming a **Fullstack Developer**.
+Welcome to the source code of Cao Dang Khoa's personal portfolio website! This space is where I share my journey, skills, and the projects I've undertaken on my path to becoming a **Fullstack Developer**.
 
 ## ✨ Introduction
 
-This website is built with the primary purpose of:
+   This website is built with the primary purpose of:
 
 - 📚 **Sharing the Journey:** Introducing my educational background, experience, and what has shaped me into the Fullstack Developer I am today.
 - 📦 **Showcasing Projects:** Displaying key completed projects, accompanied by detailed descriptions and the list of technologies used.
@@ -129,44 +129,44 @@ Below is an overview of the project's directory structure:
 
 ## 🛠️ Quick Start
 
-To set up and run this project on your local machine, please follow these steps:
+   To set up and run this project on your local machine, please follow these steps:
 
-1. **Clone repository:** Copy the source code to your machine.
-   \`\`\`bash
-   git clone <your_repository_url>
-   \`\`\`
-2. **Navigate into the project directory:**
-   \`\`\`bash
-   cd <your_project_folder_name>
-   \`\`\`
-3. **Install dependencies:** Use your preferred package manager.
-   \`\`\`bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   \`\`\`
-4. **Run the project in development mode:**
+1.**Clone repository:** Copy the source code to your machine.
+\`\`\`bash
+git clone <your_repository_url>
+\`\`\`
+2.**Navigate into the project directory:**
+\`\`\`bash
+cd <your_project_folder_name>
+\`\`\`
+3.**Install dependencies:** Use your preferred package manager.
+\`\`\`bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+\`\`\`
+4.**Run the project in development mode:**
 
-   \`\`\`bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   \`\`\`
+\`\`\`bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+\`\`\`
 
    The application will start and be accessible at \`http://localhost:<port>\` (usually 5173 or 3000).
 
-5. **Build the project for deployment:**
-   \`\`\`bash
-   npm run build
-   # or
-   yarn build
-   # or
-   pnpm build
-   \`\`\`
+5.**Build the project for deployment:**
+\`\`\`bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+\`\`\`
    The production-optimized build result will be in the \`dist/\` directory.
 
 ## 📬 Contact
