@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="item mt-8 flex relative lg:mt-0 lg:pt-[0.4rem] lg:pb-4 lg:pl-[calc(var(--section-gap)/2)]"
-  >
+  <div class="item mt-8 flex relative lg:mt-0 lg:pt-[0.4rem] lg:pb-4 lg:pl-[calc(var(--section-gap)/2)]">
     <i
-      class="flex items-center justify-center w-8 h-8 text-[color:var(--color-text)] lg:top-[calc(50%-25px)] lg:left-[-26px] lg:absolute lg:border lg:border-[color:var(--color-border)] lg:bg-[color:var(--color-background)] lg:rounded-lg lg:w-[50px] lg:h-[50px]"
-    >
+      class="flex items-center justify-center w-8 h-8 text-[color:var(--color-text)] lg:top-[calc(50%-25px)] lg:left-[-26px] lg:absolute lg:border lg:border-[color:var(--color-border)] lg:bg-[color:var(--color-background)] lg:rounded-lg lg:w-[50px] lg:h-[50px]">
       <slot name="icon"></slot>
     </i>
 

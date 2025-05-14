@@ -1,5 +1,4 @@
 <script setup>
-import HelloWorld from "./Ingredient/HelloWorld.vue";
 import TheWelcome from "./Ingredient/TheWelcome.vue";
 import ButtonSkills from "./Components/ButtonSkills.vue"
 </script>

@@ -1,4 +1,4 @@
-@import './base.css';
+@import "./base.css";
 @import "tailwindcss";
 
 #app {
@@ -32,5 +32,39 @@ a,
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
+  }
+}
+@layer components {
+  .colored-word-chao {
+    @apply text-black px-2 py-1 rounded-md;
+    background-color: #bae6fd;
+  }
+  .colored-word-mung {
+    @apply text-black px-2 py-1 rounded-md;
+    background-color: #bbf7d0;
+  }
+  .colored-word-den {
+    @apply text-black px-2 py-1 rounded-md;
+    background-color: #ede7f6;
+  }
+  .colored-word-voi {
+    @apply text-black px-2 py-1 rounded-md;
+    background-color: #fef08a;
+  }
+  .colored-word-trang {
+    @apply text-black px-2 py-1 rounded-md;
+    background-color: #fee2e2;
+  }
+  .colored-word-cua {
+    @apply text-black px-2 py-1 rounded-md;
+    background-color: #ccfbf1;
+  }
+  .colored-word-dang {
+    @apply text-black px-2 py-1 rounded-md;
+    background-color: #fde68a;
+  }
+  .colored-word-khoa {
+    @apply text-black px-2 py-1 rounded-md; /* Không thêm cho từ cuối */
+    background-color: #ede7f6;
   }
 }
