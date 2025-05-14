@@ -49,8 +49,6 @@ import MarkdownIt from 'markdown-it';
 const props = defineProps({
     readmePath: {
         type: String,
-        // required: true,
-        default: './README.md'
     },
     cardTitle: {
         type: String,
