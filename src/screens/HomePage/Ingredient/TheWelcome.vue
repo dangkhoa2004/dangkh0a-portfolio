@@ -78,7 +78,7 @@
     <template #icon>
       <CommunityIcon />
     </template>
-    <Readme />
+    <Readme readme-path="../../../../README.md" />
   </WelcomeItem>
 </template>
 
