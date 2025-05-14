@@ -7,7 +7,7 @@
 <script setup>
 import { RouterView } from "vue-router";
 import CustomLoading from "@/components/utilities/CustomLoading.vue";
-import DarkModeButton from "@/components/utilities/DarkModeButton.vue"; // Đảm bảo import component này
+import DarkModeButton from "@/components/utilities/DarkModeButton.vue";
 import { useLoadingStore } from "@/stores/loading";
 
 const loadingStore = useLoadingStore();

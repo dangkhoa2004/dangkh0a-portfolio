@@ -28,9 +28,7 @@
                     </div>
 
                     <div class="flex-grow p-6 overflow-y-auto markdown-body">
-                        <div v-if="loading" class="text-center text-gray-500">
-                            Loading README...
-                        </div>
+                        <CustomLoading v-if="loading" />
                         <div v-else-if="error" class="text-center text-red-500">
                             {{ error }}
                         </div>
@@ -45,10 +43,13 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import MarkdownIt from 'markdown-it';
+import CustomLoading from "@/components/utilities/CustomLoading.vue";
 
 const props = defineProps({
     readmePath: {
         type: String,
+        required: true,
+        default: './README.md'
     },
     cardTitle: {
         type: String,
@@ -74,24 +75,44 @@ const md = new MarkdownIt({
 const fetchReadme = async () => {
     loading.value = true;
     error.value = null;
+
+    // Tạo một Promise cho việc fetch dữ liệu
+    const fetchPromise = fetch(props.readmePath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch README. Status: ${response.status} ${response.statusText}`);
+            }
+            return response.text();
+        })
+        .then(readmeText => {
+            // Trả về nội dung đã render, sẽ được Promise.all sử dụng
+            return md.render(readmeText);
+        });
+
+    // Tạo một Promise chờ 1 giây
+    const delayPromise = new Promise(resolve => setTimeout(resolve, 1000)); // Chờ 1000ms = 1 giây
+
     try {
-        const response = await fetch(props.readmePath);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch README. Status: ${response.status} ${response.statusText}`);
-        }
-        const readmeText = await response.text();
-        renderedReadme.value = md.render(readmeText);
+        // Sử dụng Promise.all để chờ cả fetch Promise và delay Promise hoàn thành
+        const [renderedContent] = await Promise.all([fetchPromise, delayPromise]);
+
+        // Nếu cả hai đều hoàn thành, cập nhật nội dung
+        renderedReadme.value = renderedContent;
+
     } catch (e) {
+        // Bắt lỗi nếu fetch thất bại (delay Promise không thất bại)
         console.error('Error fetching or rendering README:', e);
         error.value = 'Failed to load README. Please check the file path and server configuration.';
         renderedReadme.value = '';
     } finally {
+        // Dù thành công hay thất bại (sau khi chờ 1 giây), kết thúc trạng thái loading
         loading.value = false;
     }
 };
 
 const handleOpen = () => {
     open.value = true;
+    // Chỉ fetch lần đầu mở modal
     if (!renderedReadme.value && !loading.value && !error.value) {
         fetchReadme();
     }
