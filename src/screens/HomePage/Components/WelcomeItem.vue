@@ -18,7 +18,7 @@
 @media (min-width: 1024px) {
   .item:before {
     content: " ";
-    border-left: 1px solid var(--color-border);
+    border-left: 1px solid lime;
     position: absolute;
     left: 0;
     bottom: calc(50% + 25px);
@@ -27,7 +27,7 @@
 
   .item:after {
     content: " ";
-    border-left: 1px solid var(--color-border);
+    border-left: 1px solid yellow;
     position: absolute;
     left: 0;
     top: calc(50% + 25px);

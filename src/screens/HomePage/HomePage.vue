@@ -5,22 +5,22 @@ import ButtonSkills from "./Components/ButtonSkills.vue"
 
 <template>
   <header class="leading-normal py-8 flex flex-col items-center px-[calc(var(--section-gap)/2)] text-center">
-    <img alt="Logo của Cao Dang Khoa" class="logo block mx-auto mb-6 rounded-full w-24 h-24 object-cover"
+    <img alt="Cao Dang Khoa's Logo" class="logo block mx-auto mb-6 rounded-full w-24 h-24 object-cover"
       src="@/assets/avatar.jpg" width="96" height="96" />
     <div>
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+      <h1 class="text-2xl font-bolddark:text-gray-100 mb-2">
         Cao Dang Khoa
       </h1>
-      <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">
-        Fullstack Developer mới tốt nghiệp
+      <p class="text-lg dark:text-gray-300 mb-4">
+        Fullstack Developer
       </p>
-      <ul class="list-disc list-inside space-y-2 text-lg text-gray-700 dark:text-gray-300 text-left pt-3">
+      <ul class="list-disc list-inside space-y-2 text-lg dark:text-gray-300 text-left pt-3">
         <li class="pt-3">
-          <span class="font-semibold">Kinh nghiệm:</span> Xây dựng giao diện
-          người dùng thân thiện và hệ thống backend mạnh mẽ cho web và ứng dụng.
+          <span class="font-semibold">Experience:</span> Build user-friendly interfaces and powerful backend systems
+          for web and applications.
         </li>
         <li class="pt-3">
-          <span class="font-semibold">Kỹ năng chuyên môn:</span>
+          <span class="font-semibold">Professional skills:</span>
           <span class="inline-flex flex-wrap gap-2 mt-1">
             <ButtonSkills text="Java (Spring Boot)" backgroundColor="#bae6fd"></ButtonSkills>
             <ButtonSkills text="PHP" backgroundColor="#bbf7d0"></ButtonSkills>
@@ -48,12 +48,10 @@ import ButtonSkills from "./Components/ButtonSkills.vue"
           </span>
         </li>
         <li class="pt-3">
-          <span class="font-semibold">Phẩm chất:</span> Tinh thần làm việc cao,
-          trung thực, kỹ năng hợp tác chủ động.
+          <span class="font-semibold">Quality:</span> High working spirit, honesty, proactive cooperation skills.
         </li>
         <li class="pt-3">
-          <span class="font-semibold">Mục tiêu:</span> Đóng góp cho đội ngũ năng
-          động và học hỏi công nghệ mới nhanh chóng.
+          <span class="font-semibold">Objective:</span> Contribute to a dynamic team and quickly learn new technologies.
         </li>
       </ul>
     </div>
