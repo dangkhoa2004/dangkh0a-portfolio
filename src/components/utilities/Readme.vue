@@ -49,7 +49,7 @@ const props = defineProps({
     readmePath: {
         type: String,
         required: true,
-        default: './README.md'
+        default: 'https://raw.githubusercontent.com/dangkhoa2004/dangkh0a-portfolio/main/README.md'
     },
     cardTitle: {
         type: String,

@@ -78,7 +78,7 @@
     <template #icon>
       <CommunityIcon />
     </template>
-    <Readme readme-path="../../../../README.md" />
+    <Readme readme-path="https://raw.githubusercontent.com/dangkhoa2004/dangkh0a-portfolio/main/README.md" />
   </WelcomeItem>
 </template>
 
